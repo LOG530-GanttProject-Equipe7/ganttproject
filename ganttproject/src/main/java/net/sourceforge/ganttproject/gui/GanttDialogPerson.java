@@ -55,6 +55,7 @@ public class GanttDialogPerson {
   private final MoneyOption myStandardRateField = new DefaultMoneyOption("colStandardRate");
   private final MoneyOption myTotalCostField = new DefaultMoneyOption("colTotalCost");
   private final DoubleOption myTotalLoadField = new DefaultDoubleOption("colTotalLoad");
+  private final BooleanOption mySharedField = new DefaultBooleanOption("Shareable");
   private final EnumerationOption myRoleField;
   private final GPOptionGroup myGroup;
   private GPOptionGroup myRateGroup;
@@ -79,7 +80,7 @@ public class GanttDialogPerson {
 
     ((GPAbstractOption)myTotalCostField).setWritable(false);
     ((GPAbstractOption)myTotalLoadField).setWritable(false);
-    myRateGroup = new GPOptionGroup("resourceRate", new GPOption[] {myStandardRateField, myTotalCostField, myTotalLoadField});
+    myRateGroup = new GPOptionGroup("resourceRate", new GPOption[] {myStandardRateField, myTotalCostField, myTotalLoadField,mySharedField});
   }
 
   public boolean result() {
@@ -119,6 +120,7 @@ public class GanttDialogPerson {
     myStandardRateField.setValue(person.getStandardPayRate());
     myTotalCostField.setValue(person.getTotalCost());
     myTotalLoadField.setValue(person.getTotalLoad());
+    mySharedField.setValue(person.getSharedProject());
   }
 
   private Component getComponent() {
@@ -213,6 +215,7 @@ public class GanttDialogPerson {
     person.setMail(myMailField.getValue());
     person.setPhone(myPhoneField.getValue());
     Role role = findRole(myRoleField.getValue());
+    person.setSharedProject(mySharedField.getValue());
     if (role != null) {
       person.setRole(role);
     }

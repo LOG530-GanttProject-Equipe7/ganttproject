@@ -42,6 +42,8 @@ import net.sourceforge.ganttproject.task.TaskSelectionManager;
 import net.sourceforge.ganttproject.util.collect.Pair;
 import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
 
+import net.sourceforge.ganttproject.action.project.ProjectExportAction;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import java.awt.*;
@@ -55,6 +57,9 @@ public class GanttResourcePanel extends TreeTableContainer<HumanResource, Resour
   public final GanttProject appli;
 
   private final ResourceActionSet myResourceActionSet;
+
+  private final ProjectExportAction exportAction;
+
   private final GanttProjectBase.RowHeightAligner myRowHeightAligner;
 
   public ResourceLoadGraphicArea area;
@@ -74,10 +79,10 @@ public class GanttResourcePanel extends TreeTableContainer<HumanResource, Resour
     super(createTreeTable(prj.getProject(), uiFacade));
     appli = prj;
     myUIFacade = uiFacade;
-
     prj.addProjectEventListener(getProjectEventListener());
     myResourceActionSet = new ResourceActionSet(this, this, prj, uiFacade, getTreeTable());
 
+    exportAction = new ProjectExportAction( prj.getUIFacade(), prj, prj.getGanttOptions().getPluginPreferences());
     final GPAction resourceDeleteAction = myResourceActionSet.getResourceDeleteAction();
     final GPAction assignmentDeleteAction = myResourceActionSet.getAssignmentDelete();
     GPAction deleteAction = new ArtefactDeleteAction(new ActiveActionProvider() {
@@ -211,6 +216,7 @@ public class GanttResourcePanel extends TreeTableContainer<HumanResource, Resour
       menu.add(appli.getCopyAction());
       menu.add(appli.getPasteAction());
       menu.add(myResourceActionSet.getResourceDeleteAction());
+      menu.add(exportAction);
     }
     menu.applyComponentOrientation(GanttLanguage.getInstance().getComponentOrientation());
     Point popupPoint = getPopupMenuPoint(e);

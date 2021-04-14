@@ -75,7 +75,7 @@ fun startUiApp(args: GanttProject.Args, configure: (GanttProject) -> Unit = {}) 
   Platform.setImplicitExit(false)
   SwingUtilities.invokeLater {
     try {
-      val ganttFrame = GanttProject(false)
+      val ganttFrame = GanttProject()
       configure(ganttFrame)
       APP_LOGGER.debug("Main frame created")
       mainWindow.set(ganttFrame)

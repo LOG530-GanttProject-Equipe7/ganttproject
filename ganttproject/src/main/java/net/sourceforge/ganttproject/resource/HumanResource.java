@@ -55,6 +55,8 @@ public class HumanResource implements CustomPropertyHolder {
 
   private String email = "";
 
+  private Boolean sharedProject = false;
+
   private Role myRole;
 
   private String description;
@@ -156,6 +158,15 @@ public class HumanResource implements CustomPropertyHolder {
     }
     this.email = email;
     fireResourceChanged();
+  }
+
+
+  public Boolean getSharedProject() {
+    return sharedProject;
+  }
+
+  public void setSharedProject(Boolean sharedProject) {
+    this.sharedProject = sharedProject;
   }
 
   public String getMail() {

@@ -92,7 +92,7 @@ public class CommandLineExportApplication {
     if (exporter == null) {
       return false;
     }
-    GanttProject project = new GanttProject(false);
+    GanttProject project = new GanttProject();
     ConsoleUIFacade consoleUI = new ConsoleUIFacade(project.getUIFacade());
     File inputFile = new File(mainArgs.file.get(0));
     if (false == inputFile.exists()) {

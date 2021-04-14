@@ -21,12 +21,16 @@ ext {
     libDir = 'lib/core'
 }
 
+
+
 configurations {
     exportedLibs
     exported.extendsFrom archives, providedCompile, exportedLibs
 }
 
 dependencies {
+    implementation 'junit:junit:4.12'
+    implementation 'junit:junit:4.12'
     providedCompile project(':biz.ganttproject.core')
     providedCompile project(path: ':biz.ganttproject.app.libs', configuration: 'exported')
     providedCompile project(path: ':biz.ganttproject.app.localization', configuration: 'exported')

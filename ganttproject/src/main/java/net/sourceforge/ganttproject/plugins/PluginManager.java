@@ -47,7 +47,7 @@ public class PluginManager {
   public static <T> List<T> getExtensions(String extensionPointID, Class<T> extensionPointInterface) {
     IExtensionRegistry extensionRegistry = Platform.getExtensionRegistry();
     ArrayList<T> extensions = new ArrayList<T>();
-    for (IConfigurationElement configElement : extensionRegistry.getConfigurationElementsFor(extensionPointID)) {
+    for (IConfigurationElement configElement :  extensionRegistry.getConfigurationElementsFor(extensionPointID)) {
       try {
         Object nextExtension = configElement.createExecutableExtension("class");
         assert nextExtension != null && extensionPointInterface.isAssignableFrom(nextExtension.getClass());

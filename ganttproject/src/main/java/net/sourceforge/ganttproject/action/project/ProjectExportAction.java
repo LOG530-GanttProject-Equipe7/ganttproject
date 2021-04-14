@@ -37,11 +37,21 @@ public class ProjectExportAction extends GPAction {
 
   private Preferences myPluginPrerences;
 
+  private int idHumanRessource;
+
   public ProjectExportAction(UIFacade uiFacade, IGanttProject project, Preferences pluginPrerences) {
     super("project.export");
     myProject = project;
     myUIFacade = uiFacade;
     myPluginPrerences = pluginPrerences;
+  }
+
+  public ProjectExportAction(UIFacade uiFacade, IGanttProject project, Preferences pluginPrerences, int idHumanRessource) {
+    super("project.export");
+    myProject = project;
+    myUIFacade = uiFacade;
+    myPluginPrerences = pluginPrerences;
+    this.idHumanRessource = idHumanRessource;
   }
 
   @Override
